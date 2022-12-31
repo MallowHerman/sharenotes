@@ -1,0 +1,81 @@
+{% extends 'main.html'  %}
+{% block content %}
+<main>
+    <div class="container" style="max-width:720px;">
+        <div class="mt-4">
+            <h1>Publicar novo material</h1>
+        </div>
+        <div class="shadow bg-white rounded p-4 my-4">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                 <div class="mb-3">
+                  <label for="formFileMultiple" class="form-label">Carregar materiais</label>
+                  <input class="form-control" type="file" id="formFileMultiple" name='document' multiple required>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Título do material</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name='name' aria-describedby="emailHelp" required>
+                </div>
+
+                <div class="form-group my-3">
+                    <label for="exampleInputEmail1">Tipo de material</label>
+                    <select class="form-select" aria-label="Default select example" name="document_type" required>
+                      {% for document_type in document_types %}
+                        <option value="{{document_type.name}}">{{document_type.name}}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+
+                <div class="my-3">
+                    <label for="exampleDataList" class="form-label">Disciplina</label>
+                    <input class="form-control" list="datalistSubject" name='subject' id="exampleDataList" required>
+                    <datalist id="datalistSubject">
+                        {% for subject in subjects %}
+                            <option value="{{subject.name}}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+
+                <div class="my-3">
+                    <label for="exampleDataList" class="form-label">Universidade</label>
+                    <input class="form-control" list="datalistSchool" name='school' id="exampleDataList" required>
+                    <datalist id="datalistSchool">
+                      {% for school in schools %}
+                            <option value="{{school.name}}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+
+                <div class="my-3">
+                    <label for="exampleDataList" class="form-label">Curso</label>
+                    <input class="form-control" list="datalistCourse" name='course' id="exampleDataList" required>
+                    <datalist id="datalistCourse">
+                      {% for course in courses %}
+                            <option value="{{course.name}}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+
+
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Descrição do material</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" name='description' rows="3"></textarea>
+                </div>
+
+                
+
+              <div class="mt-4">
+                <div>
+                    <button type="submit" class="btn btn-success w-100">Publicar</button>
+                </div>
+                <div class="text-center mt-1">
+                    <a href="{% url 'base:search' %}" class="text-muted">Cancelar</a>
+                </div>
+              </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock content %}

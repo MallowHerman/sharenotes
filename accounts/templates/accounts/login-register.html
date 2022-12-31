@@ -1,0 +1,72 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<main>
+	<div class="container" style="max-width:720px;">
+		<div class="bg-white rounded shadow p-4 my-4">
+			{% if page == 'login' %}
+				<div>
+					<h1>Login</h1>
+				</div>
+				<form method="POST">
+					{% csrf_token %}
+				  <div class="mb-3">
+				    <label for="exampleInputEmail1" class="form-label">Usuário</label>
+				    <input type="text" name="user_username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+				  </div>
+				  <div class="mb-3">
+				    <label for="exampleInputPassword1" class="form-label">Senha</label>
+				    <input type="password" name="user_password" class="form-control" id="exampleInputPassword1" required>
+				  </div>
+				  <div class="text-center">
+				  	<div>
+				  		<button type="submit" class="btn btn-success w-100">Login</button>
+				  	</div>
+				  	<div class="mt-2">
+				  		<a class="text-muted" href="{% url 'base:index' %}">Cancelar</a>
+				  	</div>
+				  </div>
+				  <div class="text-center mt-4">
+				  	<span class="small">Precisa de uma conta? <a href="{% url 'register' %}"> Crie sua conta aqui.</a></span> 
+				  </div>
+				</form>
+			{% elif page == 'register' %}
+				<div>
+					<form method="POST">
+						{% csrf_token %}
+						<div class="mb-3">
+						    <label for="exampleInputEmail1" class="form-label">Nome do usuário</label>
+						    {{form.username}}
+						</div>
+						<div class="mb-3">
+						    <label for="exampleInputEmail1" class="form-label">Email</label>
+						    {{form.email}}
+						</div>
+						<div class="mb-3">
+						    <label for="exampleInputEmail1" class="form-label">Senha</label>
+						    {{form.password1}}
+						</div>
+						<div class="mb-3">
+						    <label for="exampleInputEmail1" class="form-label">Confirmar senha</label>
+						    {{form.password2}}
+						</div>
+						  
+						<div class="text-center">
+						  	<div>
+						  		<button type="submit" class="btn btn-success w-100">Cadastar</button>
+						  	</div>
+						  	<div class="mt-2">
+						  		<a class="text-muted" href="{% url 'base:index' %}">Cancelar</a>
+						  	</div>
+						</div>
+						<div class="text-center mt-4">
+						  	<span class="small">já possui uma conta? <a href="{% url 'login' %}"> Faça login aqui.</a></span> 
+						</div>
+						  
+					</form>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</main>
+{% endblock content %}

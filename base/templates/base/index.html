@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Home | ShareNotes{% endblock title %}
+{% block content %}
+<main>
+  <div class="container">
+    <div class="px-4" style="height: 100vh;">
+      <div style="position: absolute; top: 40%; left: 0; transform: translateY(-50%); padding: inherit;">
+        <center>
+          <h1 class="px-2">Busque e baixe materiais publicados por outros alunos</h3>
+        </center>
+        {% include 'base/components/search_input.html' %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
