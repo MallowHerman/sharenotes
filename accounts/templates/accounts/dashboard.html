@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<main>
+	<div class="container">
+		<div class="profile text-center my-4">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              <img src="{% static 'images/profile.jpg' %}" />
+            </div>
+          </div>
+          <div class="profile__info">
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+            <p>Universidade do Mindelo</p>
+            <p>@{{user.username}}</p>
+            {% if user == request.user %}
+            	<a href="edit-user.html" class="btn btn--main btn--pill">Edit Profile</a>
+            {% endif %}
+          </div>
+          <!-- <div class="profile__about">
+            <h3>About</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur illo tenetur
+              facilis sunt nemo debitis quisquam hic atque aut? Ducimus alias placeat optio
+              accusamus repudiandae quis ab ex exercitationem rem?
+            </p>
+          </div> -->
+        </div>
+		<div class="my-4">
+			{% include 'base/components/search_input.html' %}
+		</div>
+		<div class="my-4">
+			<div>
+				<h2 class="fs-1" style="color: var(--color-dark-light);">Materiais compartilhados por {{user.username}}</h2>
+			</div>
+			{% include 'base/components/documents_list.html' %}
+		</div>
+	</div>
+</main>
+{% endblock content %}
